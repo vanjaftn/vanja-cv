@@ -216,9 +216,9 @@ export const cv: CV = {
       url: "https://pravonazivotsabac.org",
       stack: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "Prisma", "Supabase"],
       images: [
-        { src: "/projects/project-one-1.svg", alt: "Project One — Dashboard overview" },
-        { src: "/projects/project-one-2.svg", alt: "Project One — Projects list" },
-        { src: "/projects/project-one-3.svg", alt: "Project One — Settings panel" },
+        { src: "/projects/pravo_na_zivot_landing.png", alt: "Project One — Dashboard overview" },
+        { src: "/projects/pravo_na_zivot_psi.png", alt: "Project One — Projects list" },
+        { src: "/projects/pravo_na_zivot_profil_psa.png", alt: "Project One — Settings panel" },
       ],
     },
     {

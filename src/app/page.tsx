@@ -53,8 +53,30 @@ function Header() {
     .toUpperCase();
 
   return (
-    <header className="border-b border-beige-200 bg-white">
-      <div className="mx-auto w-full max-w-6xl px-8 sm:px-12 py-12 sm:py-16">
+    <header className="relative overflow-hidden border-b border-beige-200 bg-gradient-to-b from-beige-100 via-beige-50 to-white">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-24 -top-32 h-80 w-80 rounded-full bg-beige-300/40 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-beige-200/60 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.18]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, var(--color-beige-300) 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+          maskImage:
+            "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+        }}
+      />
+
+      <div className="relative mx-auto w-full max-w-6xl px-8 sm:px-12 py-12 sm:py-16">
         <div className="flex items-start gap-5">
           {/* <div
             aria-hidden="true"
@@ -66,35 +88,67 @@ function Header() {
             <h1 className="mt-2 text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
               {cv.name}
             </h1>
-            <p className="mt-2 text-lg text-beige-600">{cv.role}</p>
+            <div
+              aria-hidden="true"
+              className="mt-3 h-[3px] w-12 rounded-full bg-beige-900"
+            />
+            <p className="mt-3 text-lg text-beige-600">{cv.role}</p>
           </div>
         </div>
 
-        <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-beige-300 bg-white px-3 py-1 text-xs text-beige-700">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-beige-400 opacity-60"></span>
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-beige-900"></span>
+        <div className="mt-6 flex flex-wrap gap-2 text-sm">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-beige-200 bg-white/80 backdrop-blur-sm px-3 py-1 text-beige-700 shadow-[0_1px_2px_rgba(60,40,15,0.04)]">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-3.5 w-3.5 text-beige-500"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 21s-7-6.2-7-12a7 7 0 1 1 14 0c0 5.8-7 12-7 12z" />
+              <circle cx="12" cy="9" r="2.5" />
+            </svg>
+            {cv.location}
           </span>
-          Open to new opportunities
-        </div>
 
-        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-beige-600">
-          <span>{cv.location}</span>
           <a
-            className="hover:text-beige-900 underline-offset-4 hover:underline"
             href={`mailto:${cv.email}`}
+            className="group inline-flex items-center gap-1.5 rounded-full border border-beige-200 bg-white/80 backdrop-blur-sm px-3 py-1 text-beige-700 shadow-[0_1px_2px_rgba(60,40,15,0.04)] transition-colors hover:border-beige-400 hover:text-beige-900"
           >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-3.5 w-3.5 text-beige-500 transition-colors group-hover:text-beige-700"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="m3 7 9 6 9-6" />
+            </svg>
             {cv.email}
           </a>
+
           {cv.links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               target="_blank"
               rel="noreferrer"
-              className="hover:text-beige-900 underline-offset-4 hover:underline"
+              className="group inline-flex items-center gap-1.5 rounded-full border border-beige-200 bg-white/80 backdrop-blur-sm px-3 py-1 text-beige-700 shadow-[0_1px_2px_rgba(60,40,15,0.04)] transition-colors hover:border-beige-400 hover:text-beige-900"
             >
               {l.label}
+              <span
+                aria-hidden="true"
+                className="text-beige-400 transition-colors group-hover:text-beige-700"
+              >
+                ↗
+              </span>
             </a>
           ))}
         </div>
@@ -317,9 +371,6 @@ function PassionProjects() {
             >
               <div className="grid gap-0 lg:grid-cols-[1.1fr_1fr]">
                 <div className="p-8 sm:p-10 lg:order-2 lg:border-l lg:border-beige-200">
-                  <p className="text-xs uppercase tracking-[0.22em] text-beige-500">
-                    Project {String(i + 1).padStart(2, "0")}
-                  </p>
                   <h3 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight">
                     {p.name}
                   </h3>
