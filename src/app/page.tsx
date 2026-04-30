@@ -1,256 +1,362 @@
 import { cv } from "@/data/cv";
+import { ProjectSlideshow } from "./components/ProjectSlideshow";
 
 export default function Home() {
   return (
     <div className="flex flex-col">
       <Header />
-      <main className="mx-auto w-full max-w-3xl px-6 py-12 sm:py-16 space-y-16">
-        <About />
-        <Experience />
-        <Education />
-        <Skills />
-        <FeaturedProjects />
-        <PdfCta />
+      <main className="mx-auto w-full max-w-6xl px-8 sm:px-12 py-16 sm:py-20 space-y-20">
+        <Section title="About" id="about">
+          <About />
+        </Section>
+        <Section title="Experience" id="experience">
+          <Experience />
+        </Section>
+        <Section title="Education" id="education">
+          <Education />
+        </Section>
+        <Section title="Skills" id="skills">
+          <Skills />
+        </Section>
       </main>
+
+      <FeaturedProjects />
+
+      <section
+        id="cv"
+        aria-labelledby="cv-heading"
+        className="mx-auto w-full max-w-6xl px-8 sm:px-12 pb-20 pt-16"
+      >
+        <PdfCta />
+      </section>
+
       <Footer />
     </div>
   );
 }
 
 function Header() {
-  return (
-    <header className="border-b border-neutral-200">
-      <div className="mx-auto w-full max-w-3xl px-6 py-10 sm:py-14">
-        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">
-          Curriculum Vitae
-        </p>
-        <h1 className="mt-3 text-4xl sm:text-5xl font-semibold tracking-tight">
-          {cv.name}
-        </h1>
-        <p className="mt-2 text-lg text-neutral-600">{cv.role}</p>
+  const initials = cv.name
+    .split(" ")
+    .map((p) => p[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
 
-        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-neutral-600">
+  return (
+    <header className="border-b border-beige-200 bg-white">
+      <div className="mx-auto w-full max-w-6xl px-8 sm:px-12 py-12 sm:py-16">
+        <div className="flex items-start gap-5">
+          {/* <div
+            aria-hidden="true"
+            className="grid h-14 w-14 shrink-0 place-items-center rounded-md bg-beige-900 text-beige-50 text-base font-semibold tracking-wider"
+          >
+            {initials}
+          </div> */}
+          <div className="min-w-0">
+            <h1 className="mt-2 text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
+              {cv.name}
+            </h1>
+            <p className="mt-2 text-lg text-beige-600">{cv.role}</p>
+          </div>
+        </div>
+
+        <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-beige-300 bg-white px-3 py-1 text-xs text-beige-700">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-beige-400 opacity-60"></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-beige-900"></span>
+          </span>
+          Open to new opportunities
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-beige-600">
           <span>{cv.location}</span>
-          <a className="hover:text-neutral-900 underline-offset-4 hover:underline" href={`mailto:${cv.email}`}>
+          <a
+            className="hover:text-beige-900 underline-offset-4 hover:underline"
+            href={`mailto:${cv.email}`}
+          >
             {cv.email}
           </a>
-          {cv.phone && <span>{cv.phone}</span>}
           {cv.links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               target="_blank"
               rel="noreferrer"
-              className="hover:text-neutral-900 underline-offset-4 hover:underline"
+              className="hover:text-beige-900 underline-offset-4 hover:underline"
             >
               {l.label}
             </a>
           ))}
         </div>
 
-        <nav className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-neutral-500">
-          <a href="#about" className="hover:text-neutral-900">About</a>
-          <a href="#experience" className="hover:text-neutral-900">Experience</a>
-          <a href="#education" className="hover:text-neutral-900">Education</a>
-          <a href="#skills" className="hover:text-neutral-900">Skills</a>
-          <a href="#projects" className="hover:text-neutral-900">Projects</a>
-          <a href="#cv" className="hover:text-neutral-900">PDF CV</a>
+        <nav
+          aria-label="Sections"
+          className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-beige-500"
+        >
+          <a href="#about" className="hover:text-beige-900">About</a>
+          <a href="#experience" className="hover:text-beige-900">Experience</a>
+          <a href="#education" className="hover:text-beige-900">Education</a>
+          <a href="#skills" className="hover:text-beige-900">Skills</a>
+          <a href="#projects" className="hover:text-beige-900">Projects</a>
+          <a href="#cv" className="hover:text-beige-900">PDF CV</a>
         </nav>
       </div>
     </header>
   );
 }
 
-function SectionHeading({ id, children }: { id: string; children: React.ReactNode }) {
+function Section({
+  title,
+  id,
+  children,
+}: {
+  title: string;
+  id: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="mb-6 flex items-baseline justify-between border-b border-neutral-200 pb-3">
-      <h2 id={id} className="text-2xl font-semibold tracking-tight scroll-mt-24">
-        {children}
-      </h2>
-    </div>
+    <section aria-labelledby={`${id}-heading`}>
+      <div className="mb-7 flex items-baseline gap-4 border-b border-beige-200 pb-3">
+        <h2
+          id={`${id}-heading`}
+          className="text-2xl sm:text-3xl font-semibold tracking-tight scroll-mt-24"
+        >
+          {title}
+        </h2>
+      </div>
+      <div id={id} className="scroll-mt-24">{children}</div>
+    </section>
   );
 }
 
 function About() {
   return (
-    <section aria-labelledby="about">
-      <SectionHeading id="about">About</SectionHeading>
-      <p className="text-neutral-700 leading-relaxed">{cv.about}</p>
-    </section>
+    <p className="max-w-3xl text-beige-700 leading-relaxed text-[1.0625rem]">
+      {cv.about}
+    </p>
   );
 }
 
 function Experience() {
   return (
-    <section aria-labelledby="experience">
-      <SectionHeading id="experience">Experience</SectionHeading>
-      <ol className="space-y-8">
-        {cv.experience.map((job) => (
-          <li key={`${job.company}-${job.period}`} className="grid gap-2 sm:grid-cols-[10rem_1fr]">
-            <div className="text-sm text-neutral-500 sm:pt-1">{job.period}</div>
-            <div>
-              <h3 className="text-base font-medium">
-                {job.role}
-                <span className="text-neutral-500"> · {job.company}</span>
-              </h3>
-              {job.location && (
-                <p className="text-sm text-neutral-500">{job.location}</p>
-              )}
-              <p className="mt-2 text-neutral-700 leading-relaxed">
-                {job.description}
-              </p>
-              {job.highlights && job.highlights.length > 0 && (
-                <ul className="mt-3 list-disc pl-5 space-y-1 text-neutral-700">
-                  {job.highlights.map((h, i) => (
-                    <li key={i}>{h}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </li>
-        ))}
-      </ol>
-    </section>
+    <ol className="space-y-10">
+      {cv.experience.map((job) => (
+        <li
+          key={`${job.company}-${job.period}`}
+          className="grid gap-3 md:grid-cols-[14rem_1fr] md:gap-10"
+        >
+          <div className="text-sm text-beige-500 md:pt-1">{job.period}</div>
+          <div className="max-w-3xl">
+            <h3 className="text-base font-medium">
+              {job.role}
+              <span className="text-beige-500"> · {job.company}</span>
+            </h3>
+            {job.location && (
+              <p className="text-sm text-beige-500">{job.location}</p>
+            )}
+            <p className="mt-2 text-beige-700 leading-relaxed">
+              {job.description}
+            </p>
+            {job.highlights && job.highlights.length > 0 && (
+              <ul className="mt-3 list-disc pl-5 space-y-1 text-beige-700 marker:text-beige-400">
+                {job.highlights.map((h, i) => (
+                  <li key={i}>{h}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
   );
 }
 
 function Education() {
   return (
-    <section aria-labelledby="education">
-      <SectionHeading id="education">Education</SectionHeading>
-      <div className="space-y-10">
-        {cv.education.map((ed) => (
-          <div key={`${ed.school}-${ed.period}`} className="grid gap-2 sm:grid-cols-[10rem_1fr]">
-            <div className="text-sm text-neutral-500 sm:pt-1">{ed.period}</div>
-            <div>
-              <h3 className="text-base font-medium">
-                {ed.degree}
-                <span className="text-neutral-500"> · {ed.school}</span>
-              </h3>
-              {ed.description && (
-                <p className="mt-2 text-neutral-700 leading-relaxed">
-                  {ed.description}
+    <div className="space-y-10">
+      {cv.education.map((ed) => (
+        <div
+          key={`${ed.school}-${ed.period}`}
+          className="grid gap-3 md:grid-cols-[14rem_1fr] md:gap-10"
+        >
+          <div className="text-sm text-beige-500 md:pt-1">{ed.period}</div>
+          <div className="max-w-3xl">
+            <h3 className="text-base font-medium">
+              {ed.degree}
+              <span className="text-beige-500"> · {ed.school}</span>
+            </h3>
+            {ed.projects.length > 0 && (
+              <div className="mt-5">
+                <p className="text-xs uppercase tracking-[0.18em] text-beige-500">
+                  College projects
                 </p>
-              )}
-
-              {ed.projects.length > 0 && (
-                <div className="mt-5">
-                  <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">
-                    College projects
-                  </p>
-                  <ul className="mt-3 space-y-3">
-                    {ed.projects.map((p) => (
-                      <li key={p.github} className="text-sm">
-                        <span className="font-medium text-neutral-900">{p.name}</span>
-                        <span className="text-neutral-700"> — {p.description} </span>
-                        <a
-                          href={p.github}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-neutral-900 underline underline-offset-4 hover:text-neutral-600"
-                        >
-                          GitHub
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+                <ul className="mt-3 space-y-3">
+                  {ed.projects.map((p) => (
+                    <li key={p.github} className="text-sm">
+                      <span className="font-medium text-beige-900">
+                        {p.name}
+                      </span>
+                      <span className="text-beige-700">
+                        {" "}
+                        — {p.description}{" "}
+                      </span>
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-beige-900 underline underline-offset-4 hover:text-beige-600"
+                      >
+                        GitHub
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
+      ))}
+    </div>
   );
 }
 
 function Skills() {
   return (
-    <section aria-labelledby="skills">
-      <SectionHeading id="skills">Skills</SectionHeading>
-      <div className="grid gap-10 sm:grid-cols-2">
-        <div>
-          <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">
-            Languages
-          </p>
-          <ul className="mt-3 space-y-2">
-            {cv.skills.languages.map((l) => (
-              <li key={l.name} className="flex items-baseline justify-between gap-4">
-                <span className="text-neutral-900">{l.name}</span>
-                <span className="text-sm text-neutral-500">{l.level}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">
-            Technical
-          </p>
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {cv.skills.technical.map((t) => (
-              <li
-                key={t}
-                className="rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-700"
-              >
-                {t}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="grid gap-12 md:grid-cols-[14rem_1fr] md:gap-10">
+      <div>
+        <p className="text-xs uppercase tracking-[0.18em] text-beige-500">
+          Languages
+        </p>
+        <ul className="mt-3 space-y-2 max-w-md">
+          {cv.skills.languages.map((l) => (
+            <li
+              key={l.name}
+              className="flex items-baseline justify-between gap-4 border-b border-dashed border-beige-200 pb-2"
+            >
+              <span className="text-beige-900">{l.name}</span>
+              <span className="text-sm text-beige-500">{l.level}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-    </section>
+      <div className="space-y-6">
+        <p className="text-xs uppercase tracking-[0.18em] text-beige-500">
+          Technical
+        </p>
+        <dl className="space-y-5">
+          {cv.skills.technical.map((group) => (
+            <div
+              key={group.label}
+              className="grid gap-2 sm:grid-cols-[12rem_1fr] sm:gap-6"
+            >
+              <dt className="text-sm font-medium text-beige-900 sm:pt-1">
+                {group.label}
+              </dt>
+              <dd>
+                <ul className="flex flex-wrap gap-2">
+                  {group.items.map((t) => (
+                    <li
+                      key={t}
+                      className="rounded-full border border-beige-300 bg-white px-3 py-1 text-sm text-beige-700"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
   );
 }
 
 function FeaturedProjects() {
   return (
-    <section aria-labelledby="projects">
-      <SectionHeading id="projects">Featured Projects</SectionHeading>
-      <div className="space-y-6">
-        {cv.featuredProjects.map((p, i) => (
-          <article
-            key={p.url}
-            className="group rounded-lg border border-neutral-300 bg-white p-6 sm:p-8 transition-colors hover:border-neutral-900"
+    <section
+      aria-labelledby="projects-heading"
+      id="projects"
+      className="scroll-mt-24 border-y border-beige-200 bg-beige-100"
+    >
+      <div className="mx-auto w-full max-w-6xl px-8 sm:px-12 py-20 sm:py-24">
+        <div className="mb-10 flex items-baseline gap-4">
+          <h2
+            id="projects-heading"
+            className="text-3xl sm:text-4xl font-semibold tracking-tight"
           >
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">
-                  Project {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-2 text-xl font-semibold tracking-tight">
-                  {p.name}
-                </h3>
-                <p className="mt-1 text-neutral-600">{p.tagline}</p>
+            Featured Projects
+          </h2>
+          <span
+            className="ml-auto h-px flex-1 bg-beige-200"
+            aria-hidden="true"
+          />
+        </div>
+        <p className="max-w-2xl text-beige-600 mb-12">
+          Two things I built and ship myself. These are the projects I want you
+          to see — open them and have a look around.
+        </p>
+
+        <div className="space-y-12">
+          {cv.featuredProjects.map((p, i) => (
+            <article
+              key={p.url}
+              className="rounded-2xl border border-beige-200 bg-white shadow-[0_1px_2px_rgba(60,40,15,0.04),0_8px_24px_-12px_rgba(60,40,15,0.10)] overflow-hidden"
+            >
+              <div className="grid gap-0 lg:grid-cols-[1.1fr_1fr]">
+                <div className="p-8 sm:p-10 lg:order-2 lg:border-l lg:border-beige-200">
+                  <p className="text-xs uppercase tracking-[0.22em] text-beige-500">
+                    Project {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight">
+                    {p.name}
+                  </h3>
+                  <p className="mt-5 text-beige-700 leading-relaxed">
+                    {p.description}
+                  </p>
+
+                  {p.stack.length > 0 && (
+                    <ul className="mt-6 flex flex-wrap gap-2">
+                      {p.stack.map((s) => (
+                        <li
+                          key={s}
+                          className="rounded-full border border-beige-300 bg-white px-3 py-1 text-xs text-beige-600"
+                        >
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <div className="mt-8 flex flex-wrap items-center gap-3">
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-md border border-beige-900 bg-beige-900 px-5 py-2.5 text-sm font-medium text-beige-50 transition-colors hover:bg-white hover:text-beige-900"
+                    >
+                      Visit website
+                      <span aria-hidden="true">→</span>
+                    </a>
+                    <span
+                      className="inline-flex items-center text-sm text-beige-500"
+                      aria-hidden="true"
+                    >
+                      {p.url.replace(/^https?:\/\//, "")}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-6 sm:p-8 lg:order-1 bg-beige-50 lg:bg-transparent">
+                  <ProjectSlideshow images={p.images} />
+                </div>
               </div>
-              <a
-                href={p.url}
-                target="_blank"
-                rel="noreferrer"
-                className="shrink-0 inline-flex items-center gap-2 rounded-md border border-neutral-900 bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:bg-white hover:text-neutral-900 transition-colors"
-              >
-                Visit website
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-
-            <p className="mt-5 text-neutral-700 leading-relaxed">
-              {p.description}
-            </p>
-
-            {p.stack.length > 0 && (
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {p.stack.map((s) => (
-                  <li
-                    key={s}
-                    className="rounded-full border border-neutral-300 px-3 py-1 text-xs text-neutral-600"
-                  >
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -258,38 +364,41 @@ function FeaturedProjects() {
 
 function PdfCta() {
   return (
-    <section aria-labelledby="cv" className="border-t border-neutral-200 pt-10">
-      <h2 id="cv" className="text-2xl font-semibold tracking-tight scroll-mt-24">
-        Looking for the PDF?
-      </h2>
-      <p className="mt-2 text-neutral-600">
-        You can view or download a printable version of my CV.
-      </p>
-      <div className="mt-5">
-        <a
-          href={cv.pdfUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-neutral-900 bg-white px-5 py-2.5 text-sm font-medium text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors"
+    <div className="rounded-2xl border border-beige-200 bg-white p-8 sm:p-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2
+          id="cv-heading"
+          className="mt-2 text-2xl font-semibold tracking-tight scroll-mt-24"
         >
-          View PDF CV
-          <span aria-hidden="true">↗</span>
-        </a>
+          Looking for the PDF?
+        </h2>
+        <p className="mt-2 text-beige-600 max-w-md">
+          Open or download a printable version of my CV.
+        </p>
       </div>
-    </section>
+      <a
+        href={cv.pdfUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-2 self-start rounded-md border border-beige-900 bg-beige-900 px-5 py-2.5 text-sm font-medium text-beige-50 transition-colors hover:bg-white hover:text-beige-900"
+      >
+        View PDF CV
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
   );
 }
 
 function Footer() {
   return (
-    <footer className="mt-auto border-t border-neutral-200">
-      <div className="mx-auto w-full max-w-3xl px-6 py-8 flex flex-wrap items-center justify-between gap-3 text-sm text-neutral-500">
+    <footer className="mt-auto border-t border-beige-200 bg-white">
+      <div className="mx-auto w-full max-w-6xl px-8 sm:px-12 py-8 flex flex-wrap items-center justify-between gap-3 text-sm text-beige-500">
         <p>
           © {new Date().getFullYear()} {cv.name}
         </p>
         <a
           href={`mailto:${cv.email}`}
-          className="hover:text-neutral-900 underline-offset-4 hover:underline"
+          className="hover:text-beige-900 underline-offset-4 hover:underline"
         >
           {cv.email}
         </a>

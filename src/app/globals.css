@@ -1,7 +1,21 @@
 @import "tailwindcss";
 
-@theme inline {
+@theme {
   --font-sans: var(--font-sans);
+
+  /* Warm beige palette — used in place of the neutral grayscale.
+     Kept monochromatic (no second hue), just warmer. */
+  --color-beige-50: #faf5e9;
+  --color-beige-100: #f0e7d2;
+  --color-beige-200: #e2d5b8;
+  --color-beige-300: #c9b793;
+  --color-beige-400: #a48a5f;
+  --color-beige-500: #826b46;
+  --color-beige-600: #635134;
+  --color-beige-700: #4a3d28;
+  --color-beige-800: #322919;
+  --color-beige-900: #1f1a0f;
+  --color-beige-950: #0d0b06;
 }
 
 html {
@@ -14,6 +28,6 @@ body {
 }
 
 ::selection {
-  background: #171717;
-  color: #ffffff;
+  background: var(--color-beige-900);
+  color: var(--color-beige-50);
 }

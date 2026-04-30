@@ -30,6 +30,20 @@ Edit:
 
 A placeholder PDF lives at `public/cv.pdf`. Just replace that file with your real CV (keep the same filename), or change `pdfUrl` in `src/data/cv.ts`.
 
+## Project screenshots
+
+Each featured project has a slideshow. The placeholder mockups live in `public/projects/`:
+
+- `project-one-1.svg`, `project-one-2.svg`, `project-one-3.svg`
+- `project-two-1.svg`, `project-two-2.svg`, `project-two-3.svg`
+
+To use real screenshots:
+
+1. Drop your images (PNG, JPG, WebP, or SVG) into `public/projects/`.
+2. Update the `images` array of each project in `src/data/cv.ts` — set the `src` to the new file path (e.g. `/projects/my-shot.png`) and update the `alt` text.
+
+You can have any number of slides per project; the slideshow adapts automatically. The placeholder mockups can be regenerated with `python3 scripts/gen-mockups.py` if you want to tweak them before swapping in the real thing.
+
 ## Deploy
 
 This is a standard Next.js app — deploy on Vercel, Netlify, or any Node host:
