@@ -5,22 +5,27 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <Header />
-      <main className="mx-auto w-full max-w-6xl px-8 sm:px-12 py-16 sm:py-20 space-y-20">
-        <Section title="About" id="about">
-          <About />
-        </Section>
-        <Section title="Experience" id="experience">
-          <Experience />
-        </Section>
-        <Section title="Education" id="education">
-          <Education />
-        </Section>
-        <Section title="Skills" id="skills">
-          <Skills />
-        </Section>
-      </main>
+      <main className="flex flex-col">
+        <div className="mx-auto w-full max-w-6xl px-8 sm:px-12 pt-16 sm:pt-20 pb-16 sm:pb-20 space-y-20">
+          <Section title="About" id="about">
+            <About />
+          </Section>
+          <Section title="Experience" id="experience">
+            <Experience />
+          </Section>
+        </div>
 
-      <PassionProjects />
+        <PassionProjects />
+
+        <div className="mx-auto w-full max-w-6xl px-8 sm:px-12 pt-16 sm:pt-20 space-y-20">
+          <Section title="Education" id="education">
+            <Education />
+          </Section>
+          <Section title="Skills" id="skills">
+            <Skills />
+          </Section>
+        </div>
+      </main>
 
       <section
         id="open-source"
@@ -159,9 +164,9 @@ function Header() {
         >
           <a href="#about" className="hover:text-beige-900">About</a>
           <a href="#experience" className="hover:text-beige-900">Experience</a>
+          <a href="#projects" className="hover:text-beige-900">Projects</a>
           <a href="#education" className="hover:text-beige-900">Education</a>
           <a href="#skills" className="hover:text-beige-900">Skills</a>
-          <a href="#projects" className="hover:text-beige-900">Projects</a>
           <a href="#open-source" className="hover:text-beige-900">Open Source</a>
           <a href="#cv" className="hover:text-beige-900">PDF CV</a>
         </nav>
