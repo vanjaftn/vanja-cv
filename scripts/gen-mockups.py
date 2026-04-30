@@ -1,5 +1,5 @@
 """Generate monochrome placeholder browser-mockup screenshots for the two
-featured projects on the CV. Run: python3 scripts/gen-mockups.py
+passion projects on the CV. Run: python3 scripts/gen-mockups.py
 """
 from pathlib import Path
 

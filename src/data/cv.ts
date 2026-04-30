@@ -25,7 +25,7 @@ export type ProjectImage = {
   alt: string;
 };
 
-export type FeaturedProject = {
+export type PassionProject = {
   name: string;
   description: string;
   url: string;
@@ -43,6 +43,12 @@ export type Skills = {
   technical: TechnicalSkillGroup[];
 };
 
+export type OpenSource = {
+  intro: string;
+  repoLabel: string;
+  repoUrl: string;
+};
+
 export type CV = {
   name: string;
   role: string;
@@ -50,10 +56,11 @@ export type CV = {
   email: string;
   links: { label: string; href: string }[];
   about: string;
+  openSource: OpenSource;
   experience: Experience[];
   education: Education[];
   skills: Skills;
-  featuredProjects: [FeaturedProject, FeaturedProject];
+  passionProjects: [PassionProject, PassionProject];
   pdfUrl: string;
 };
 
@@ -69,17 +76,25 @@ export const cv: CV = {
 
   about:
     "Software Engineer with experience building full-stack, client-facing applications using modern backend and frontend technologies. Comfortable working across the development lifecycle, from understanding requirements to implementation and code review, while collaborating closely with clients and team members to deliver reliable software.",
+  openSource: {
+    intro: "Outside of client work, I contribute to open source — see my work on",
+    repoLabel: "zio-elasticsearch",
+    repoUrl: "https://github.com/lambdaworks/zio-elasticsearch",
+  },
   experience: [
     {
       role: "Software Engineer",
-      company: "Software engineer LambdaWorks D.O.O",
+      company: "Vega IT D.O.O",
       location: "Novi Sad, Serbia",
-      period: "October 2023 – November 2023.",
+      period: "April 2024 - Present",
       description:
-        "Collaborated with a team of medior and senior software engineers to improve the open-source zio-elasticsearch library.",
+        "",
       highlights: [
-        "Implementation of various queries and aggregations.",
-        "Development of new tests to validate the performance of added features and the refactoring of existing tests to ensure their efficacy.",
+        "Worked across backend and frontend layers, contributing to application design, implementation, and maintenance",
+        "Served as a key technical contact for clients, translating business requirements into technical solutions",
+        "Owned backend architecture and implementation for key features, improving performance and reliability",
+        "Drove continuous improvement by proposing and implementing optimizations in application design and logic",
+        "Contributed to code quality through active participation in reviews and architectural discussions",
       ],
     },
     {
@@ -193,13 +208,13 @@ export const cv: CV = {
     ],
   },
 
-  featuredProjects: [
+  passionProjects: [
     {
-      name: "pravonazivot.org (Animal adoption website)",
+      name: "Animal Shelter Management Software",
       description:
-        "A longer paragraph explaining the problem this project solves, the audience it's built for, and the key ideas behind it. Talk about why you started building it and what makes it different from what already exists. Keep it concrete: who uses it, what they do with it, and what changed for them once they started using it.",
+        "Volunteer project for a local dog shelter to support shelter operations and reduce manual workflows.",
       url: "https://pravonazivotsabac.org",
-      stack: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
+      stack: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "Prisma", "Supabase"],
       images: [
         { src: "/projects/project-one-1.svg", alt: "Project One — Dashboard overview" },
         { src: "/projects/project-one-2.svg", alt: "Project One — Projects list" },
@@ -220,5 +235,5 @@ export const cv: CV = {
     },
   ],
 
-  pdfUrl: "/cv.pdf",
+  pdfUrl: "/Vanja_Maksimovic_CV.pdf",
 };

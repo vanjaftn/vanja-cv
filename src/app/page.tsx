@@ -20,12 +20,20 @@ export default function Home() {
         </Section>
       </main>
 
-      <FeaturedProjects />
+      <PassionProjects />
+
+      <section
+        id="open-source"
+        aria-labelledby="open-source-heading"
+        className="mx-auto w-full max-w-6xl px-8 sm:px-12 pt-16"
+      >
+        <OpenSourceCta />
+      </section>
 
       <section
         id="cv"
         aria-labelledby="cv-heading"
-        className="mx-auto w-full max-w-6xl px-8 sm:px-12 pb-20 pt-16"
+        className="mx-auto w-full max-w-6xl px-8 sm:px-12 pb-20 pt-8"
       >
         <PdfCta />
       </section>
@@ -100,6 +108,7 @@ function Header() {
           <a href="#education" className="hover:text-beige-900">Education</a>
           <a href="#skills" className="hover:text-beige-900">Skills</a>
           <a href="#projects" className="hover:text-beige-900">Projects</a>
+          <a href="#open-source" className="hover:text-beige-900">Open Source</a>
           <a href="#cv" className="hover:text-beige-900">PDF CV</a>
         </nav>
       </div>
@@ -275,7 +284,7 @@ function Skills() {
   );
 }
 
-function FeaturedProjects() {
+function PassionProjects() {
   return (
     <section
       aria-labelledby="projects-heading"
@@ -288,7 +297,7 @@ function FeaturedProjects() {
             id="projects-heading"
             className="text-3xl sm:text-4xl font-semibold tracking-tight"
           >
-            Featured Projects
+            Passion Projects
           </h2>
           <span
             className="ml-auto h-px flex-1 bg-beige-200"
@@ -301,7 +310,7 @@ function FeaturedProjects() {
         </p>
 
         <div className="space-y-12">
-          {cv.featuredProjects.map((p, i) => (
+          {cv.passionProjects.map((p, i) => (
             <article
               key={p.url}
               className="rounded-2xl border border-beige-200 bg-white shadow-[0_1px_2px_rgba(60,40,15,0.04),0_8px_24px_-12px_rgba(60,40,15,0.10)] overflow-hidden"
@@ -359,6 +368,33 @@ function FeaturedProjects() {
         </div>
       </div>
     </section>
+  );
+}
+
+function OpenSourceCta() {
+  return (
+    <div className="rounded-2xl border border-beige-200 bg-white p-8 sm:p-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2
+          id="open-source-heading"
+          className="mt-2 text-2xl font-semibold tracking-tight scroll-mt-24"
+        >
+          Open Source
+        </h2>
+        <p className="mt-2 text-beige-600 max-w-md">
+          {cv.openSource.intro} {cv.openSource.repoLabel}.
+        </p>
+      </div>
+      <a
+        href={cv.openSource.repoUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-2 self-start rounded-md border border-beige-900 bg-beige-900 px-5 py-2.5 text-sm font-medium text-beige-50 transition-colors hover:bg-white hover:text-beige-900"
+      >
+        View on GitHub
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
   );
 }
 

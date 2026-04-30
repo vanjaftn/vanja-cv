@@ -24,7 +24,7 @@ Edit:
 - Experience entries (period, role, company, highlights)
 - Education entry, including the list of college projects with GitHub links
 - Skills (languages and technical)
-- The two featured projects (most important — set `url` to your live site)
+- The two passion projects (most important — set `url` to your live site)
 
 ## Replacing the PDF CV
 
@@ -32,7 +32,7 @@ A placeholder PDF lives at `public/cv.pdf`. Just replace that file with your rea
 
 ## Project screenshots
 
-Each featured project has a slideshow. The placeholder mockups live in `public/projects/`:
+Each passion project has a slideshow. The placeholder mockups live in `public/projects/`:
 
 - `project-one-1.svg`, `project-one-2.svg`, `project-one-3.svg`
 - `project-two-1.svg`, `project-two-2.svg`, `project-two-3.svg`
