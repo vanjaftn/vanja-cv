@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cv } from "@/data/cv";
 import { ProjectSlideshow } from "./components/ProjectSlideshow";
 
@@ -49,14 +50,6 @@ export default function Home() {
 }
 
 function Header() {
-  const initials = cv.name
-    .split(" ")
-    .map((p) => p[0])
-    .filter(Boolean)
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
-
   return (
     <header className="relative overflow-hidden border-b border-beige-200 bg-gradient-to-b from-beige-100 via-beige-50 to-white">
       <div
@@ -82,13 +75,15 @@ function Header() {
       />
 
       <div className="relative mx-auto w-full max-w-6xl px-8 sm:px-12 py-12 sm:py-16">
-        <div className="flex items-start gap-5">
-          {/* <div
-            aria-hidden="true"
-            className="grid h-14 w-14 shrink-0 place-items-center rounded-md bg-beige-900 text-beige-50 text-base font-semibold tracking-wider"
-          >
-            {initials}
-          </div> */}
+        <div className="flex items-start gap-5 sm:gap-6">
+          <Image
+            src="/projects/vanja_slika.png"
+            alt={`Portrait of ${cv.name}`}
+            width={800}
+            height={800}
+            priority
+            className="h-24 w-24 sm:h-28 sm:w-28 shrink-0 rounded-full object-cover ring-1 ring-beige-200 shadow-[0_1px_2px_rgba(60,40,15,0.06),0_8px_24px_-12px_rgba(60,40,15,0.18)]"
+          />
           <div className="min-w-0">
             <h1 className="mt-2 text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
               {cv.name}
