@@ -8,11 +8,17 @@ export function ProjectSlideshow({
   images,
   interval = 4500,
   className = "",
+  orientation = "horizontal",
 }: {
   images: Image[];
   interval?: number;
   className?: string;
+  orientation?: "horizontal" | "vertical";
 }) {
+  const isVertical = orientation === "vertical";
+  const aspectClass = isVertical ? "aspect-[9/16]" : "aspect-[16/10]";
+  const wrapperWidthClass = isVertical ? "mx-auto w-full max-w-[280px]" : "";
+  const imgFitClass = isVertical ? "object-contain" : "object-cover";
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [tabHidden, setTabHidden] = useState(false);
@@ -76,7 +82,7 @@ export function ProjectSlideshow({
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
-      className={`relative aspect-[16/10] overflow-hidden rounded-lg border border-beige-200 bg-beige-100 outline-none focus-visible:ring-2 focus-visible:ring-beige-900 ${className}`}
+      className={`relative ${aspectClass} ${wrapperWidthClass} overflow-hidden rounded-lg border border-beige-200 bg-beige-100 outline-none focus-visible:ring-2 focus-visible:ring-beige-900 ${className}`}
     >
       {images.map((img, i) => (
         // eslint-disable-next-line @next/next/no-img-element
@@ -85,7 +91,7 @@ export function ProjectSlideshow({
           src={img.src}
           alt={img.alt}
           aria-hidden={i !== index}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${
+          className={`absolute inset-0 h-full w-full ${imgFitClass} transition-opacity duration-700 ease-out ${
             i === index ? "opacity-100" : "opacity-0"
           }`}
           draggable={false}

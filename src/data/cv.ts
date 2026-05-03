@@ -31,6 +31,7 @@ export type PassionProject = {
   url: string;
   stack: string[];
   images: ProjectImage[];
+  orientation?: "horizontal" | "vertical";
 };
 
 export type TechnicalSkillGroup = {
@@ -98,8 +99,8 @@ export const cv: CV = {
       ],
     },
     {
-      role: "Software Engineer",
-      company: "Software engineer LambdaWorks D.O.O",
+      role: "Intern Software Engineer",
+      company: "LambdaWorks D.O.O",
       location: "Novi Sad, Serbia",
       period: "October 2023 – November 2023.",
       description:
@@ -110,8 +111,8 @@ export const cv: CV = {
       ],
     },
     {
-      role: "Software Engineer",
-      company: "Software engineer Nova Lite D.O.O",
+      role: "Intern Software Engineer",
+      company: "Nova Lite D.O.O",
       location: "Novi Sad, Serbia",
       period: "February 2023 – March 2023.",
       description:
@@ -166,6 +167,7 @@ export const cv: CV = {
         label: "Frameworks / Libraries",
         items: [
           "React",
+          "React Native",
           "Angular",
           "Next.js",
           "ASP.NET",
@@ -203,6 +205,7 @@ export const cv: CV = {
           "Supabase",
           "Vercel",
           "Wolverine",
+          "Cursor"
         ],
       },
     ],
@@ -222,15 +225,20 @@ export const cv: CV = {
       ],
     },
     {
-      name: "Project Two",
+      name: "Sealed With Love",
       description:
-        "A longer paragraph for the second project. What does it do, who uses it, and what's notable about how it's built? Talk about a specific technical decision you're proud of, or a constraint that shaped the design. End with how someone can try it and what they should look at first.",
-      url: "https://your-project-two.example.com",
-      stack: ["React", "Node.js", "Tailwind CSS"],
+        "Mobile app to help the users plan new, creative and fun dates with their partner.",
+      url: "https://sealedwithlove.app/",
+      stack: ["React Native", "Expo"],
+      orientation: "vertical",
       images: [
-        { src: "/projects/project-two-1.svg", alt: "Project Two — Landing page" },
-        { src: "/projects/project-two-2.svg", alt: "Project Two — Features grid" },
-        { src: "/projects/project-two-3.svg", alt: "Project Two — Documentation" },
+        { src: "/projects/date_idea_app_choose_your_deck.jpg", alt: "Project Two — Landing page" },
+        { src: "/projects/date_idea_app_your_deck.jpg", alt: "Project Two — Landing page" },
+        { src: "/projects/date_idea_app_envelope.jpg", alt: "Project Two — Features grid" },
+        { src: "/projects/date_idea_app_letter.jpg", alt: "Project Two — Documentation" },
+        { src: "/projects/date_idea_app_rate.jpg", alt: "Project Two — Documentation" },
+        { src: "/projects/date_idea_app_list_screen.jpg", alt: "Project Two — Documentation" },
+        { src: "/projects/date_idea_app_completed+.jpg", alt: "Project Two — Documentation" },
       ],
     },
   ],

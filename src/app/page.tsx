@@ -411,7 +411,7 @@ function PassionProjects() {
                 </div>
 
                 <div className="p-6 sm:p-8 lg:order-1 bg-beige-50 lg:bg-transparent">
-                  <ProjectSlideshow images={p.images} />
+                  <ProjectSlideshow images={p.images} orientation={p.orientation} />
                 </div>
               </div>
             </article>
