@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { cv } from "@/data/cv";
 import { ProjectSlideshow } from "./components/ProjectSlideshow";
+import Head from "next/head";
 
 export default function Home() {
   return (
@@ -77,7 +78,7 @@ function Header() {
       <div className="relative mx-auto w-full max-w-6xl px-8 sm:px-12 py-12 sm:py-16">
         <div className="flex items-start gap-5 sm:gap-6">
           <Image
-            src="/projects/vanja_slika.png"
+            src="/vanja_slika.png"
             alt={`Portrait of ${cv.name}`}
             width={800}
             height={800}
